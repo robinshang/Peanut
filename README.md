@@ -25,8 +25,7 @@
 
 
 ##下载
-[360应用市场](http://zhushou.360.cn/detail/index/soft_id/3299502)
-[腾讯应用宝](http://fusion.qq.com/cgi-bin/qzapps/unified_jump?appid=42299449&from=mqq&actionFlag=0&params=pname%3Dcom.dhn.peanut%26versioncode%3D1%26channelid%3D%26actionflag%3D0)
+[小米应用市场](http://app.xiaomi.com/detail/420500)
 
 ##截图
 ![主页](https://github.com/gatsbydhn/Peanut/blob/master/image/shot1.png)
