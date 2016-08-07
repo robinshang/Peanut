@@ -103,6 +103,7 @@ public class RemoteProfileDataSource implements ProfileDataSource {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.e("checkFollow: onErrorResponse");
                         callback.onFollowChecked(isFollowed);
                     }
                 }
@@ -118,7 +119,7 @@ public class RemoteProfileDataSource implements ProfileDataSource {
             @Override
             protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
                 if (response.statusCode == 204 || response.statusCode == 201) {
-                    Log.e("checkFollow: 已follow");
+                    //Log.e("checkFollow: 已follow");
                     isFollowed = true;
                 }
                 return super.parseNetworkResponse(response);

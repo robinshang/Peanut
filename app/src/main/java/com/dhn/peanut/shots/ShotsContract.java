@@ -8,8 +8,8 @@ import java.util.List;
  * Created by DHN on 2016/5/31.
  */
 public interface ShotsContract {
-    public int LINEAR = 0;
-    public int GRIDE = 1;
+    int LINEAR = 0;
+    int GRIDE = 1;
     interface  View {
         void setPresenter(Presenter presenter);
         void showShots(List<Shot> shots);

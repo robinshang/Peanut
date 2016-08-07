@@ -39,7 +39,7 @@ public class RemoteShotData implements ShotDataSource {
     }
 
     //TODO 单例
-    public static RemoteShotData getInstance() {
+    public static synchronized RemoteShotData getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new RemoteShotData();
         }
