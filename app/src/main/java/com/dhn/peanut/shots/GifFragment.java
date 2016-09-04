@@ -42,8 +42,4 @@ public class GifFragment extends BaseFragment {
 
         mPresenter.loadGifs(true);
     }
-
-
-
-
 }

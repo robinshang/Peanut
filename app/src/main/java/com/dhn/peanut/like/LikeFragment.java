@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dhn.library.HourglassLoadingView;
 import com.dhn.peanut.PeanutApplication;
 import com.dhn.peanut.R;
 import com.dhn.peanut.data.LikedShot;
@@ -142,7 +141,7 @@ public class LikeFragment extends Fragment implements LikeContract.View{
     public void showNeedAutho() {
         mRecyclerView.setVisibility(View.GONE);
         mLoading.setVisibility(View.GONE);
-        mNoContentTv.setText("请先登录");
+        mNoContentTv.setText(R.string.following_login);
         mNoContentTv.setVisibility(View.VISIBLE);
     }
 }

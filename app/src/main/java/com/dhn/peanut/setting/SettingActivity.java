@@ -39,7 +39,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private void initToolbar() {
         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolbar.setTitle("设置");
+        mToolbar.setTitle(R.string.setting);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
     }

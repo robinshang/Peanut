@@ -79,10 +79,10 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onFollowChecked(boolean isFollowed) {
                             if (isFollowed) {
-                                mMenu.findItem(R.id.menu_follow).setTitle("取消关注");
+                                mMenu.findItem(R.id.menu_follow).setTitle(R.string.unfollow);
                                 mIsFollowed = true;
                             } else {
-                                mMenu.findItem(R.id.menu_follow).setTitle("关注");
+                                mMenu.findItem(R.id.menu_follow).setTitle(R.string.follow);
                                 mIsFollowed = false;
                             }
                         }
@@ -212,13 +212,13 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onFollowed(boolean requestFollow) {
                         if (requestFollow) {
-                            Toast.makeText(ProfileActivity.this, "已关注", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileActivity.this, R.string.followed, Toast.LENGTH_SHORT).show();
                             mIsFollowed = true;
-                            item.setTitle("取消关注");
+                            item.setTitle(R.string.unfollow);
                         } else {
-                            Toast.makeText(ProfileActivity.this, "已取消关注", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileActivity.this, R.string.unfollowed, Toast.LENGTH_SHORT).show();
                             mIsFollowed = false;
-                            item.setTitle("关注");
+                            item.setTitle(R.string.follow);
                         }
                     }
                 });

@@ -22,4 +22,25 @@
     <string name="select_image_label">选择一个图片</string>
     <string name="create_shot_tips">Dribbble 在后台创建作品。 创建成功后可能需要几分钟后才可以看到新的作品。</string>
     <string name="title_activity_setting">SettingActivity</string>
+
+    <string name="create_create">创建作品</string>
+    <string name="create_drop">确定丢弃该内容？</string>
+    <string name="create_success">创建成功</string>
+    <string name="create_unauthentivate">只有Player才能发布作品</string>
+    <string name="create_error">网络错误</string>
+
+    <string name="following_follower">关注者</string>
+    <string name="following_login">请先登录</string>
+
+    <string name="like_like">喜爱</string>
+
+    <string name="login_code_error">出错啦，code为空</string>
+    <string name="login_token_error">出错啦，token为空</string>
+    <string name="login_success">登陆成功</string>
+
+    <string name="follow">关注</string>
+    <string name="unfollow">取消关注</string>
+    <string name="unfollowed">已取消关注</string>
+    <string name="followed">已关注</string>
+    <string name="setting">设置</string>
 </resources>

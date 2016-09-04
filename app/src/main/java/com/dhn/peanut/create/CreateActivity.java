@@ -44,10 +44,20 @@ import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class CreateActivity extends AppCompatActivity {
 
     private static final int CHOOSE_PICTURE = 0;
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+    private static final String TAG = "CreateActivity";
 
 
     @BindView(R.id.toolbar)
@@ -64,6 +74,7 @@ public class CreateActivity extends AppCompatActivity {
     private Bitmap mBitmap;
     private String mFilePath;
     private AlertDialog mDialog;
+    private OkHttpClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +83,7 @@ public class CreateActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initView();
-
+        mClient = new OkHttpClient();
     }
 
     private void initView() {
@@ -87,6 +98,7 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
+    //获取图片
     private void takePictrue() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
@@ -97,14 +109,14 @@ public class CreateActivity extends AppCompatActivity {
         intent.putExtra("outputY", 300);
         intent.putExtra("scale", true);
         intent.putExtra("return-data", true);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
 
         startActivityForResult(intent, CHOOSE_PICTURE);
     }
 
     private void initToolbar() {
         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolbar.setTitle("创建作品");
+        mToolbar.setTitle(R.string.create_create);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
     }
@@ -155,7 +167,7 @@ public class CreateActivity extends AppCompatActivity {
 
     private void dialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("确定丢弃该内容？");
+        builder.setMessage(R.string.create_drop);
         builder.setTitle("提示");
         builder.setPositiveButton("确定", new AlertDialog.OnClickListener() {
             @Override
@@ -228,15 +240,57 @@ public class CreateActivity extends AppCompatActivity {
         }
 
         mDialog.show();
+
         //将bitmap转化为文件，保存文件路径
         String fileName = "tem" + new Random().nextInt() + ".png";
         File file = bitmapToFile(bitmap, fileName);
         mFilePath = file.getAbsolutePath();
 
+//        //将bitmap转化为字节数组
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+//        byte[] bitmapData = bos.toByteArray();
+
         //开启子线程上传,第一个参数为url， 第二个参数为图片路径
-        String titile = mEtName.getText().toString();
-        new UpLoadAsyncTask(PeanutInfo.URL_CREATE, mFilePath, titile).execute();
+        String title = mEtName.getText().toString();
+
+        new UpLoadAsyncTask(PeanutInfo.URL_CREATE, mFilePath, title).execute();
+//        upLoadNow(PeanutInfo.URL_CREATE, title, bitmapData);
     }
+
+//    private void upLoadNow(String url, String title, byte[] data) {
+//        RequestBody requestBody = new MultipartBody.Builder()
+//                                        .setType(MultipartBody.FORM)
+//                                        .addFormDataPart("title", title)
+//                                        .addFormDataPart("image", title,
+//                                                RequestBody.create(MEDIA_TYPE_PNG, data))
+//                                        .build();
+//
+//        Request request = new Request.Builder()
+//                            .header("Authorization", "Bearer " + PeanutInfo.CLIENT_TOLEN)
+//                            .url(url)
+//                            .post(requestBody)
+//                            .build();
+//
+//        mClient.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.e(TAG, "error");
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                Log.e("TAG", response.toString());
+//            }
+//        });
+//    }
+
+
+
+
+
+
+
 
     private File bitmapToFile(Bitmap bitmap, String fileName) {
         File f = new File(getCacheDir(), fileName);
@@ -296,13 +350,13 @@ public class CreateActivity extends AppCompatActivity {
             //TODO
             Log.e(TAG, "response code:" + respnoseCode);
             if (respnoseCode == 200 || respnoseCode == 202) {
-                Toast.makeText(CreateActivity.this, "创建成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateActivity.this, R.string.create_success, Toast.LENGTH_SHORT).show();
                 mDialog.dismiss();
                 finish();
             } else if (respnoseCode == 401){
-                Toast.makeText(CreateActivity.this, "只有Player才能发布作品", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateActivity.this, R.string.create_unauthentivate, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(CreateActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateActivity.this, R.string.create_error, Toast.LENGTH_SHORT).show();
             }
         }
 

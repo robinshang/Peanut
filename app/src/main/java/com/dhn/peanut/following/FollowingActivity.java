@@ -51,7 +51,7 @@ public class FollowingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_following);
         ButterKnife.bind(this);
 
-        mToolbar.setTitle("关注者");
+        mToolbar.setTitle(R.string.following_follower);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
@@ -97,7 +97,7 @@ public class FollowingActivity extends AppCompatActivity {
 
     public void showNeedAutho() {
         mTvNoData.setVisibility(View.VISIBLE);
-        mTvNoData.setText("请先登录");
+        mTvNoData.setText(R.string.following_login);
         mRecyclerView.setVisibility(View.GONE);
         mLoading.setVisibility(View.GONE);
     }

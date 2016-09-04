@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                             //获取token
                             requestForAccessToken(code);
                         } else {
-                            Toast.makeText(LoginActivity.this, "出错啦，code为空", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.login_code_error, Toast.LENGTH_SHORT).show();
                         }
 
                         //忽略发送从定向url的请求
@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(LoginActivity.this, "授权成功", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
                         CookieManager.getInstance().removeAllCookie();
                         onCompleteAuth();
                     }
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this, "出错啦，获取token失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, R.string.login_token_error, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
         final String token = AuthoUtil.getToken();
 
         if (token == null) {
-            Toast.makeText(LoginActivity.this, "出错啦，token为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.login_token_error, Toast.LENGTH_SHORT).show();
         } else {
             String url = PeanutInfo.URL_MY_INFO;
 
