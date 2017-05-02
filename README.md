@@ -14,10 +14,10 @@
 - 发表作品
 
 
-##下载
+## 下载
 [小米应用市场](http://app.xiaomi.com/detail/420500)
 
-##截图
+## 截图
 ![主页](https://github.com/gatsbydhn/Peanut/blob/master/image/shot1.png)
 ![登陆](https://github.com/gatsbydhn/Peanut/blob/master/image/shot2.png)
 ![喜爱页](https://github.com/gatsbydhn/Peanut/blob/master/image/shot4.png)
